@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+logPath = ENV['LOG_SRC'] || 'log'
+targetPath = ENV['LOG_DST'] || '/home/public_html/log'
+host = ENV['LOG_HOST'] || 'user@example.com'
+port = ENV['LOG_SSH_PORT'] || '22'
+
+if ARGV.length > 0 && ARGV[0] == 'sync' then
+  puts 'Syncing log files...'
+  `rsync -vz --rsh='ssh -p#{port}' #{logPath}/*.yml #{host}:#{targetPath}`
+  exit
+end
+
+filePath = logPath+"/"+Time.now.strftime("%Y-%b").downcase+".yml"
+
+puts filePath
+
+if !File.exists?(filePath)
+  open(filePath, 'w') do |f|
+    f << %(title: Log for #{Time.now.strftime('%Y-%B')}
+created_at: #{Time.now.to_s}
+kind: log
+data:)
+  end
+end
+
+open(filePath, 'a') do |f|
+  f << %(-
+  time: #{Time.now.to_s}
+  topic: none
+  url: https://github.com/attilam
+  media: http://rotonde.attilam.com/media/img.jpg
+  data:
+    - focus: 0.5
+  text: |
+    BLAH
+)
+end
+
+system(ENV['EDITOR']+' '+filePath)
