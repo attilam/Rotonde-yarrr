@@ -1,6 +1,6 @@
 <?php
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
+header("Access-Control-Allow-Methods: PUT, GET, POST");
 header("Access-Control-Allow-Headers: *");
 
 $f = 'feed.json'; // path to rotonde feed json file

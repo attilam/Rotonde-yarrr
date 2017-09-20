@@ -4,6 +4,11 @@ profile:
   location: Hungary
   color: "#8872FF"
   avatar: http://rotonde.attilam.com/Rubinstein.png
+  bio: "Warrior Princess"
+  website: http://attilam.com/
+meta:
+  version: 0.0.1-metaprop
+  canonical: rotonde.attilam.com
 portal:
 - rotonde.xxiivv.com
 - rotonde.cblgh.org

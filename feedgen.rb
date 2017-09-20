@@ -21,6 +21,7 @@ profile = YAML.load( File.open(profileFile, 'r') { |f| f.read } )
 json = {}
 json['profile'] = profile['profile']
 json['portal'] = profile['portal']
+json['meta'] = profile['meta']
 json['feed'] = []
 
 data.each { |entry|
