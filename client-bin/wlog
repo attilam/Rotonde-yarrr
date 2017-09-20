@@ -1,4 +1,6 @@
 #!/usr/bin/env ruby
+require 'securerandom'
+
 logPath = ENV['LOG_SRC'] || 'log'
 targetPath = ENV['LOG_DST'] || '/home/public_html/log'
 host = ENV['LOG_HOST'] || 'user@example.com'
@@ -26,6 +28,7 @@ end
 open(filePath, 'a') do |f|
   f << %(-
   time: #{Time.now.to_s}
+  id: #{SecureRandom.uuid}
   topic: none
   url: https://github.com/attilam
   media: http://rotonde.attilam.com/media/img.jpg
